@@ -38,9 +38,9 @@ const App: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen font-sans text-gray-800">
+    <div className="min-h-screen text-gray-800">
       <header className="py-8 text-center">
-        <h1 className="text-5xl font-bold text-stone-700 tracking-tight" style={{fontFamily: "'Comic Sans MS', cursive, sans-serif"}}>
+        <h1 className="text-5xl font-bold text-stone-700 tracking-tight">
           Nástěnka Práce
         </h1>
         <p className="mt-2 text-lg text-stone-600">

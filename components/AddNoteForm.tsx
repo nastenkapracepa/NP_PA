@@ -40,7 +40,7 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
     <div className="mb-12 max-w-lg mx-auto bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-black/10">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex items-center space-x-6">
-          <label className="block text-sm font-medium text-stone-700">
+          <label className="block text-lg font-medium text-stone-700">
             Typ inzerátu
           </label>
           <div className="flex items-center space-x-4">
@@ -54,14 +54,14 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
                   onChange={() => setType(noteType)}
                   className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-stone-300"
                 />
-                <span className="font-medium">{noteType}</span>
+                <span className="font-medium text-lg">{noteType}</span>
               </label>
             ))}
           </div>
         </div>
 
         <div>
-          <label htmlFor="note-text" className="block text-sm font-medium text-stone-700 mb-1">
+          <label htmlFor="note-text" className="block text-lg font-medium text-stone-700 mb-1">
             Text inzerátu
           </label>
           <textarea
@@ -69,14 +69,14 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="např. Zkušeného Java vývojáře..."
-            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out"
+            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out text-base"
             rows={3}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-stone-700 mb-1">
+          <label htmlFor="email" className="block text-lg font-medium text-stone-700 mb-1">
             Email:
           </label>
           <input
@@ -84,12 +84,12 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out"
+            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out text-base"
             required
           />
         </div>
         <div>
-          <label htmlFor="tel" className="block text-sm font-medium text-stone-700 mb-1">
+          <label htmlFor="tel" className="block text-lg font-medium text-stone-700 mb-1">
             Tel.:
           </label>
           <input
@@ -97,12 +97,12 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
             type="tel"
             value={tel}
             onChange={(e) => setTel(e.target.value)}
-            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out"
+            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out text-base"
             required
           />
         </div>
         <div>
-          <label htmlFor="linkedin" className="block text-sm font-medium text-stone-700 mb-1">
+          <label htmlFor="linkedin" className="block text-lg font-medium text-stone-700 mb-1">
             LinkedIn (nepovinné):
           </label>
           <input
@@ -111,14 +111,14 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
             placeholder="https://linkedin.com/in/..."
-            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out"
+            className="w-full px-3 py-2 border border-stone-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500 transition duration-150 ease-in-out text-base"
           />
         </div>
 
         <button
           type="submit"
           disabled={isSubmitted}
-          className={`w-full text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-md ${
+          className={`w-full text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-md text-xl ${
             isSubmitted
               ? 'bg-green-500 cursor-not-allowed'
               : 'bg-amber-500 hover:bg-amber-600 focus:ring-amber-500'
@@ -126,7 +126,7 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
         >
           {isSubmitted ? (
             <span className="flex items-center justify-center">
-              <CheckIcon className="w-5 h-5 mr-2" />
+              <CheckIcon className="w-6 h-6 mr-2" />
               Přidáno!
             </span>
           ) : (

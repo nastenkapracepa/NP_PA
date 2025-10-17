@@ -18,7 +18,6 @@ export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId
       <section>
         <h2 
             className="text-4xl font-bold text-stone-700 mb-6 text-center pb-2 border-b-4 border-green-400" 
-            style={{fontFamily: "'Comic Sans MS', cursive, sans-serif"}}
         >
             {NoteType.OFFERING}
         </h2>
@@ -34,7 +33,6 @@ export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId
       <section>
         <h2 
             className="text-4xl font-bold text-stone-700 mb-6 text-center pb-2 border-b-4 border-blue-400"
-            style={{fontFamily: "'Comic Sans MS', cursive, sans-serif"}}
         >
             {NoteType.DEMANDING}
         </h2>

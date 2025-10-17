@@ -52,26 +52,25 @@ export const Note: React.FC<NoteProps> = ({ note, index, onDelete, currentUserId
 
   return (
     <div
-      className={`relative p-4 pt-8 min-h-[16rem] flex flex-col justify-between transform transition-transform duration-150 hover:scale-105 hover:z-10 ${rotation}`}
-      style={{ fontFamily: "'Comic Sans MS', cursive, sans-serif" }}
+      className={`relative p-4 pt-8 min-h-[16rem] flex flex-col justify-between transform transition-transform duration-150 hover:scale-105 hover:z-10 ${rotation} text-lg`}
     >
       <div className={`absolute inset-0 ${noteColor} shadow-lg rounded-sm border-t-8 ${accentColor}`}></div>
       <Pin />
       <div className="relative z-10 flex-grow overflow-y-auto flex flex-col">
-        <p className="font-bold mb-2">{note.type}</p>
+        <p className="font-bold mb-2 text-xl">{note.type}</p>
         <p className="text-gray-700 break-words flex-grow mb-2">{note.text}</p>
-        <div className="border-t border-gray-400/50 pt-2 mt-auto space-y-1 text-sm">
+        <div className="border-t border-gray-400/50 pt-2 mt-auto space-y-1 text-base">
             <div className="flex items-center gap-2">
-                <MailIcon className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                <MailIcon className="w-5 h-5 text-gray-600 flex-shrink-0" />
                 <a href={`mailto:${note.email}`} className="text-gray-700 hover:underline truncate">{note.email}</a>
             </div>
             <div className="flex items-center gap-2">
-                <PhoneIcon className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                <PhoneIcon className="w-5 h-5 text-gray-600 flex-shrink-0" />
                 <span className="text-gray-700">{note.tel}</span>
             </div>
             {note.linkedin && (
                 <div className="flex items-center gap-2">
-                    <LinkedInIcon className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                    <LinkedInIcon className="w-5 h-5 text-gray-600 flex-shrink-0" />
                     <a href={note.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:underline truncate">LinkedIn profil</a>
                 </div>
             )}
@@ -83,7 +82,7 @@ export const Note: React.FC<NoteProps> = ({ note, index, onDelete, currentUserId
           className="absolute bottom-2 right-2 z-20 p-1 rounded-full text-gray-400 hover:bg-red-100 hover:text-red-500 transition-colors duration-200"
           aria-label="Smazat poznámku"
         >
-          <TrashIcon className="w-5 h-5" />
+          <TrashIcon className="w-6 h-6" />
         </button>
       )}
     </div>
