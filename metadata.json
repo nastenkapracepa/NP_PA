@@ -1,0 +1,5 @@
+{
+  "name": "Nástěnka Práce",
+  "description": "Jednoduchá webová aplikace, která funguje jako virtuální nástěnka pro nabízení a poptávání práce. Uživatelé mohou přidávat lístečky s nabídkou nebo poptávkou, které se zobrazí na hlavní ploše.",
+  "requestFramePermissions": []
+}
