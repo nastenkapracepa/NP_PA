@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Board } from './components/Board';
 import { AddNoteForm } from './components/AddNoteForm';
 import { Note, NoteType } from './types';
+import { NewNotePayload } from './lib/validation';
 
 const INITIAL_NOTES: Note[] = [
   { id: '1', type: NoteType.OFFERING, text: 'Senior Backend Programátora (Java/Kotlin) do zavedeného FinTech startupu.', email: 'hr@fintech.io', tel: '123 456 789', linkedin: 'https://linkedin.com/in/fintech-hr', creatorId: 'user-abc-123' },
@@ -33,7 +34,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const handleAddNote = (newNote: Omit<Note, 'id' | 'creatorId'>) => {
+  const handleAddNote = (newNote: NewNotePayload) => {
     setNotes(prevNotes => [
       { ...newNote, id: new Date().toISOString(), creatorId: userId },
       ...prevNotes, 
