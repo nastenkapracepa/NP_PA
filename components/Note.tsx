@@ -6,6 +6,7 @@ interface NoteProps {
   index: number;
   onDelete: (id: string) => void;
   currentUserId: string;
+  isAdmin: boolean;
 }
 
 const Pin: React.FC = () => (
@@ -41,14 +42,14 @@ const LinkedInIcon: React.FC<{className?: string}> = ({className}) => (
     </svg>
 )
 
-export const Note: React.FC<NoteProps> = ({ note, index, onDelete, currentUserId }) => {
+export const Note: React.FC<NoteProps> = ({ note, index, onDelete, currentUserId, isAdmin }) => {
   const rotationClasses = ['-rotate-2', 'rotate-1', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-3'];
   const rotation = rotationClasses[index % rotationClasses.length];
 
   const noteColor = note.type === NoteType.OFFERING ? 'bg-green-200' : 'bg-blue-200';
   const accentColor = note.type === NoteType.OFFERING ? 'border-green-400' : 'border-blue-400';
   
-  const isOwner = note.creatorId === currentUserId;
+  const canDelete = isAdmin || note.creatorId === currentUserId;
 
   return (
     <div
@@ -76,7 +77,7 @@ export const Note: React.FC<NoteProps> = ({ note, index, onDelete, currentUserId
             )}
         </div>
       </div>
-      {isOwner && (
+      {canDelete && (
         <button 
           onClick={() => onDelete(note.id)}
           className="absolute bottom-2 right-2 z-20 p-1 rounded-full text-gray-400 hover:bg-red-100 hover:text-red-500 transition-colors duration-200"

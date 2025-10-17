@@ -6,9 +6,10 @@ interface BoardProps {
   notes: INote[];
   onDeleteNote: (id: string) => void;
   currentUserId: string;
+  isAdmin: boolean;
 }
 
-export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId }) => {
+export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId, isAdmin }) => {
   const offeringNotes = notes.filter(note => note.type === NoteType.OFFERING);
   const demandingNotes = notes.filter(note => note.type === NoteType.DEMANDING);
 
@@ -23,7 +24,7 @@ export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {offeringNotes.map((note, index) => (
-            <Note key={note.id} note={note} index={index} onDelete={onDeleteNote} currentUserId={currentUserId} />
+            <Note key={note.id} note={note} index={index} onDelete={onDeleteNote} currentUserId={currentUserId} isAdmin={isAdmin} />
           ))}
           {offeringNotes.length === 0 && <p className="text-center text-stone-500 col-span-full mt-8">Zatím zde nejsou žádné nabídky.</p>}
         </div>
@@ -38,7 +39,7 @@ export const Board: React.FC<BoardProps> = ({ notes, onDeleteNote, currentUserId
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {demandingNotes.map((note, index) => (
-            <Note key={note.id} note={note} index={index} onDelete={onDeleteNote} currentUserId={currentUserId} />
+            <Note key={note.id} note={note} index={index} onDelete={onDeleteNote} currentUserId={currentUserId} isAdmin={isAdmin} />
           ))}
           {demandingNotes.length === 0 && <p className="text-center text-stone-500 col-span-full mt-8">Zatím zde nejsou žádné poptávky.</p>}
         </div>
