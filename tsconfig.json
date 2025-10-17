@@ -23,6 +23,6 @@
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true
   },
-  "include": ["src", "api", "components", "types.ts", "App.tsx", "index.tsx", "lib"],
+  "include": ["components", "lib", "App.tsx", "index.tsx", "types.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

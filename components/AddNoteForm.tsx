@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { NoteType } from '../types';
 import { z } from 'zod';
 import { NoteFormSchema, NewNotePayload } from '../lib/validation';
+import { getAiEnhancedText } from '../lib/api';
 
 interface AddNoteFormProps {
   onAddNote: (note: NewNotePayload) => void;
@@ -19,7 +20,6 @@ const SparklesIcon: React.FC<{className?: string}> = ({className}) => (
   </svg>
 )
 
-
 export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
   const [text, setText] = useState('');
   const [type, setType] = useState<NoteType>(NoteType.OFFERING);
@@ -29,6 +29,7 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [errors, setErrors] = useState<z.ZodFormattedError<NewNotePayload> | null>(null);
+  const [apiError, setApiError] = useState('');
   
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
@@ -49,21 +50,13 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
   const handleGenerateText = async () => {
     if (!text.trim()) return;
     setIsGenerating(true);
+    setApiError('');
     try {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
-      });
-      if (!response.ok) {
-        throw new Error('Nepodařilo se vylepšit text.');
-      }
-      const data = await response.json();
-      if (data.text) {
-        setText(data.text);
-      }
+      const enhancedText = await getAiEnhancedText(text);
+      setText(enhancedText);
     } catch (error) {
       console.error('Error generating text:', error);
+      setApiError(error instanceof Error ? error.message : 'Nepodařilo se vylepšit text.');
     } finally {
       setIsGenerating(false);
     }
@@ -73,6 +66,7 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
     e.preventDefault();
     setErrors(null);
     setCaptchaError('');
+    setApiError('');
 
     if (parseInt(captcha, 10) !== num1 + num2) {
       setCaptchaError('Špatná odpověď! Zkuste to znovu.');
@@ -153,6 +147,7 @@ export const AddNoteForm: React.FC<AddNoteFormProps> = ({ onAddNote }) => {
             rows={3}
           />
           {errors?.text?._errors[0] && <p className="text-red-600 text-sm mt-1">{errors.text._errors[0]}</p>}
+          {apiError && <p className="text-red-600 text-sm mt-1">{apiError}</p>}
         </div>
 
         <div>
